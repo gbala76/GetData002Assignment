@@ -1,4 +1,4 @@
-## Summary of course assignment overview
+## Summary of assignment overview
 This project is to demonstrate to collect, work with, and clean a data set. The goal is to prepare a tidy data, based on the sample data collected from the accelerometers from the Samsung Galaxy S smartphone. A full description is available at the site where the data was obtained: 
 
 http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones 
