@@ -1,3 +1,13 @@
+cat("## =======================================================================================================\n")
+cat("## 0) Initializing...\n")
+cat("## =======================================================================================================\n")
+
+cat("Load library: reshape2\n")
+library(reshape2)
+library(plyr)
+
+
+
 cat("\n\n")
 cat("## =======================================================================================================\n")
 cat("## 1) Extracts only the measurements on the mean and standard deviation for each measurement.\n")
@@ -45,12 +55,21 @@ cat("## ========================================================================
 cat("## 3) Uses descriptive activity names to name the activities in the data set.\n")
 cat("## =======================================================================================================\n")
 
+cat("Changing activity values to descriptions...\n")
+yAll <- as.data.frame(merge(yAll, activityLabel, by="V1")[,2])
+
+
 
 
 cat("\n\n")
 cat("## =======================================================================================================\n")
 cat("## 4) Appropriately labels the data set with descriptive activity names.\n")
 cat("## =======================================================================================================\n")
+
+cat("Renaming all data's column names...\n")
+names(subjectAll) <- "Subject"
+names(xAll) <- MeanStdName
+names(yAll) <- "Activity"
 
 
 
@@ -59,8 +78,30 @@ cat("## ========================================================================
 cat("## 5) Creates a second, independent tidy data set with the average of each variable for each activity and each subject.\n")
 cat("## =======================================================================================================\n")
 
+cat("Creating the tidy data set...\n")
+finalAll <- cbind(subjectAll, yAll, xAll)
+resultTidy <- melt(finalAll, id = c("Subject","Activity"))
+resultTidy <- ddply(resultTidy, .(Subject, Activity, variable), summarize, mean = mean(value))
+names(resultTidy) <- c("Subject","Activity", "Feature", "Mean")
+
+outputFile <- "resultTidy.txt"
+cat("Writing to output file: ", outputFile, "\n")
+write.table(resultTidy, file=outputFile, quote=FALSE, sep="|", eol="\r\n", row.names=FALSE)
 
 
+
+cat("\n\n")
+cat("## =======================================================================================================\n")
+cat("## Final) Cleaning up ...\n")
+cat("## =======================================================================================================\n")
+
+cat("Unload library: reshape2, plyr\n")
+tryCatch(
+    {# try unloading a package gracefully wihtout error message; maybe the package is already unloaded
+        detach("package:plyr")
+        detach("package:reshape2")
+    }
+)
 
 
 
