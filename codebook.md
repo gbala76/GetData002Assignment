@@ -8,11 +8,13 @@ Prerequisite
 
 
 =======================================================================================================
+Transformations
+=======================================================================================================
 The script is performing the following transformations.
 Note that the sequence of steps is different from the original course suggested steps. The modification
 is to load only the mean & standard deviation columns into the memory, without loading the entire data set.  
 This improves the data loading performance. 
-=======================================================================================================
+
 0) Load the package: reshape2
 1) Extracts only the measurements on the mean and standard deviation for each measurement.
     - Note that, within the column names, it's assumed that:
