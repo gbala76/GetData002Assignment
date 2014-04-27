@@ -27,7 +27,7 @@ Final) cleaning up; unload the package: reshape2
 
 
 =======================================================================================================
-list of the variables used in script
+list of the R script variables used in script
 =======================================================================================================
 
 Inputs variables loaded from files
@@ -79,7 +79,7 @@ Outputs
        * Mean
     - The file format is:
        * String values have no quote.
-       * Columns are pipe-delimited, "|"
+       * Columns are pipe-delimited, "|"  Because some feature variable names contain comma, using comma as a delimiter is not appropriate. 
        * End-of-line is the Microsoft Windows style: \r\n
        * Row records do not have index.
 
